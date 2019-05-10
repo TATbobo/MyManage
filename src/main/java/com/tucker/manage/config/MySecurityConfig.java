@@ -52,12 +52,13 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         /*http.authorizeRequests().antMatchers("/").permitAll()
                 .antMatchers("/dashboard").hasRole("Customer");*/
         //开启登陆界面
-        http.formLogin().usernameParameter("Username").passwordParameter("Password").loginPage("/login")
+        http.formLogin().usernameParameter("Username").passwordParameter("Password").loginPage("/login").failureUrl("/login/error")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login","/assets/**").permitAll()
+                .antMatchers("/login","/assets/**","/register","/login/error").permitAll()
                 .anyRequest()
                 .authenticated();
+
         http.logout().logoutSuccessUrl("/");
         http.rememberMe().rememberMeParameter("remember-me");
     }

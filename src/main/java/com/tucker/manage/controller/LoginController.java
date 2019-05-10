@@ -27,7 +27,10 @@ public class LoginController {
 	}
 
 	@GetMapping("/register")
-	public String registerPage(){return "register";}
+	public String registerPage(){return "page-register";}
+
+	@GetMapping("/login/error")
+	public String loginerrorPage(){return "page-loginerror";}
 
 	@PostMapping("/register")
 	public String registerUser(User user){
@@ -35,7 +38,7 @@ public class LoginController {
 		user.setPassword(encoder.encode(user.getPassword().trim()));
 		System.out.println(user);
 		userMapper.insertUser(user);
-		return "redirect:/user/login";
+		return "redirect:/login";
 	}
 
 }

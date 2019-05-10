@@ -1,0 +1,11 @@
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://188.131.254.195/demo01?useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  messages:
+    basename: i18n.login
