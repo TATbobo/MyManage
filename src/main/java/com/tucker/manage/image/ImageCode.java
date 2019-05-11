@@ -1,11 +1,12 @@
 package com.tucker.manage.image;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
+@Data
 public class ImageCode {
 
         //图形属性

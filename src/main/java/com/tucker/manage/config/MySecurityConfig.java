@@ -1,5 +1,9 @@
 package com.tucker.manage.config;
 
+import com.tucker.manage.filter.ValidateCodeFilter;
+import com.tucker.manage.handler.MyAuthenticationFailHandler;
+import com.tucker.manage.handler.MyAuthenticationSuccessHandler;
+import com.tucker.manage.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +25,16 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     @Qualifier("UserDetailService1")
     @Autowired
     private UserDetailsService userDetailsService;
+
+    private final MyAuthenticationFailHandler myFailHandler;
+    private final MyAuthenticationSuccessHandler mySuccessHandler;
+    private final SecurityProperties securityProperties;
+
+    public MySecurityConfig(MyAuthenticationSuccessHandler mySuccessHandler, MyAuthenticationFailHandler myFailHandler,SecurityProperties securityProperties) {
+        this.mySuccessHandler = mySuccessHandler;
+        this.myFailHandler = myFailHandler;
+        this.securityProperties=securityProperties;
+    }
 
     /*@Autowired
     public void confiureGlobal(AuthenticationManagerBuilder auth) throws Exception{
@@ -52,7 +66,15 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         /*http.authorizeRequests().antMatchers("/").permitAll()
                 .antMatchers("/dashboard").hasRole("Customer");*/
         //开启登陆界面
-        http.formLogin().usernameParameter("Username").passwordParameter("Password").loginPage("/login").failureUrl("/login/error")
+        ValidateCodeFilter validateCodeFilter = new ValidateCodeFilter();
+        validateCodeFilter.setAuthenticationFailureHandler(myFailHandler);
+        validateCodeFilter.setSecurityProperties(securityProperties);
+        validateCodeFilter.afterPropertiesSet();
+
+
+        http.formLogin().usernameParameter("Username").passwordParameter("Password").loginPage("/login")
+                .successHandler(mySuccessHandler)
+                .failureHandler(myFailHandler)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/login","/assets/**","/register","/login/error").permitAll()

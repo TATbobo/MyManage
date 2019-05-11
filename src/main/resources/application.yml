@@ -9,3 +9,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   messages:
     basename: i18n.login
+com:
+  tucker:
+    manage:
+      length: 6
+      url: "/"
