@@ -20,7 +20,7 @@
 <body>
 
 <div id="single-wrapper">
-	<form th:action="@{/login}" method="post" class="frm-single">
+	<form th:action="@{/login}" method="post" class="frm-single" >
 		<div class="inside">
 			<div class="title" th:text="#{login.tip}"><strong>Admin</strong></div>
 			<!-- /.title -->
@@ -29,7 +29,7 @@
 			<div class="frm-input"><input type="text" name="Username" placeholder="Username" class="frm-inp"><i class="fa fa-user frm-ico"></i></div>
 			<!-- /.frm-input -->
 			<div class="frm-input"><input type="password" name="Password" placeholder="Password" class="frm-inp"><i class="fa fa-lock frm-ico"></i></div>
-
+			<div class="frm-input"><input type="text" name="code" class="frm-inp" autocomplete="off"><i class="fa fa-lock frm-ico" ></i><img th:src="@{/code/image}"></div>
 			<!-- /.frm-input -->
 			<div class="clearfix margin-bottom-20">
 				<div class="pull-left">

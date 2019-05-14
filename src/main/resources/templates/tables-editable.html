@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,29 +7,25 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Home - My Admin Template</title>
+	<title>Editable Tables - My Admin Template</title>
 
 	<!-- Main Styles -->
-	<link rel="stylesheet" th:href="@{/assets/styles/style.min.css}">
+	<link rel="stylesheet" href="assets/styles/style.min.css">
 	
 	<!-- Material Design Icon -->
-	<link rel="stylesheet" th:href="@{assets/fonts/material-design/css/materialdesignicons.css}">
+	<link rel="stylesheet" href="assets/fonts/material-design/css/materialdesignicons.css">
 
 	<!-- mCustomScrollbar -->
-	<link rel="stylesheet" th:href="@{assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css}">
+	<link rel="stylesheet" href="assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css">
 
 	<!-- Waves Effect -->
-	<link rel="stylesheet" th:href="@{assets/plugin/waves/waves.min.css}">
+	<link rel="stylesheet" href="assets/plugin/waves/waves.min.css">
 
 	<!-- Sweet Alert -->
-	<link rel="stylesheet" th:href="@{assets/plugin/sweet-alert/sweetalert.css}">
+	<link rel="stylesheet" href="assets/plugin/sweet-alert/sweetalert.css">
 	
-	<!-- Morris Chart -->
-	<link rel="stylesheet" th:href="@{assets/plugin/chart/morris/morris.css}">
-
-	<!-- FullCalendar -->
-	<link rel="stylesheet" th:href="@{assets/plugin/fullcalendar/fullcalendar.min.css}">
-	<link rel="stylesheet" th:href="@{assets/plugin/fullcalendar/fullcalendar.print.css}" media='print'>
+	<!-- Data Tables -->
+	<link rel="stylesheet" href="assets/plugin/datatables/media/css/jquery.dataTables.min.css">
 
 </head>
 
@@ -40,7 +35,7 @@
 		<a href="index.html" class="logo"><i class="ico mdi mdi-cube-outline"></i>MyAdmin</a>
 		<button type="button" class="button-close fa fa-times js__menu_close"></button>
 		<div class="user">
-			<a href="" class="avatar"><img src="assets/images/avatar-sm-5.jpg" alt=""><span class="status online"></span></a>
+			<a href="#" class="avatar"><img src="assets/images/avatar-sm-5.jpg" alt=""><span class="status online"></span></a>
 			<h5 class="name"><a href="profile.html">Denise Emily</a></h5>
 			<h5 class="position">Administrator</h5>
 			<!-- /.name -->
@@ -49,7 +44,7 @@
 				<div class="control-list">
 					<div class="control-item"><a href="profile.html"><i class="fa fa-user"></i> Profile</a></div>
 					<div class="control-item"><a href="#"><i class="fa fa-gear"></i> Settings</a></div>
-					<div class="control-item"><a onclick="buttonsubmit()"><i class="fa fa-sign-out"></i> Log out</a></div>
+					<div class="control-item"><a href="#"><i class="fa fa-sign-out"></i> Log out</a></div>
 				</div>
 				<!-- /.control-list -->
 			</div>
@@ -64,7 +59,7 @@
 			<h5 class="title">Navigation</h5>
 			<!-- /.title -->
 			<ul class="menu js__accordion">
-				<li class="current">
+				<li>
 					<a class="waves-effect" href="index.html"><i class="menu-icon mdi mdi-view-dashboard"></i><span>Dashboard</span></a>
 				</li>
 				<li>
@@ -142,13 +137,13 @@
 					</ul>
 					<!-- /.sub-menu js__content -->
 				</li>
-				<li>
+				<li class="current active">
 					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-table"></i><span>Tables</span><span class="menu-arrow fa fa-angle-down"></span></a>
 					<ul class="sub-menu js__content">
 						<li><a href="tables-basic.html">Basic Tables</a></li>
-						<li><a th:href="@{/emps}">员工列表</a></li>
+						<li><a href="tables-datatable.html">Data Tables</a></li>
 						<li><a href="tables-responsive.html">Responsive Tables</a></li>
-						<li><a href="tables-editable.html">Editable Tables</a></li>
+						<li class="current"><a href="tables-editable.html">Editable Tables</a></li>
 					</ul>
 					<!-- /.sub-menu js__content -->
 				</li>
@@ -195,10 +190,10 @@
 <div class="fixed-navbar">
 	<div class="pull-left">
 		<button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
-		<h1 class="page-title">Home</h1>
+		<h1 class="page-title">Editable Tables</h1>
 		<!-- /.page-title -->
 	</div>
-    <form th:action="@{/logout}" method="post" id="logout"></form>
+	<!-- /.pull-left -->
 	<div class="pull-right">
 		<div class="ico-item">
 			<a href="#" class="ico-item mdi mdi-magnify js__toggle_open" data-target="#searchform-header"></a>
@@ -210,6 +205,7 @@
 		<a href="#" class="ico-item pulse"><span class="ico-item mdi mdi-bell notice-alarm js__toggle_open" data-target="#notification-popup"></span></a>
 		<a href="#" class="ico-item mdi mdi-logout js__logout"></a>
 	</div>
+	<!-- /.pull-right -->
 </div>
 <!-- /.fixed-navbar -->
 
@@ -387,353 +383,45 @@
 		<div class="row small-spacing">
 			<div class="col-xs-12">
 				<div class="box-content">
-					<h4 class="box-title">Activity</h4>
-					<!-- /.box-title -->
-					<div class="dropdown js__drop_down">
-						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
-						<ul class="sub-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else there</a></li>
-							<li class="split"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul>
-						<!-- /.sub-menu -->
-					</div>
-					<!-- /.dropdown js__dropdown -->
-					<div id="real-time-flot-chart" class="flot-chart" style="height: 320px"></div>
-					<!-- /#flot-chart-1.flot-chart -->
+					<table id="example-edit" class="display" style="width: 100%">
+						<thead>
+						<thead>
+						<tr>
+							<th>姓名</th>
+							<th>性别</th>
+							<th>邮箱</th>
+							<th>部门</th>
+						</tr>
+						</thead>
+						<tfoot>
+						<tr>
+							<th>姓名</th>
+							<th>性别</th>
+							<th>邮箱</th>
+							<th>部门</th>
+						</tr>
+						</tfoot>
+						<tbody>
+						<tr>
+						<tr th:each="emp:${emps}">
+							<td th:text="${emp.id}"></td>
+							<td>[[${emp.lastName}]]</td>
+							<td th:text="${emp.email}"></td>
+							<td th:text="${emp.gender}==0?'女':'男'"></td>
+							<td th:text="${#dates.format(emp.birth, 'yyyy-MM-dd HH:mm')}"></td>
+							<td>
+								<a class="btn btn-sm btn-primary" th:href="@{/emp/}+${emp.id}">编辑</a>
+								<button th:attr="del_uri=@{/emp/}+${emp.id}" class="btn btn-sm btn-danger deleteBtn">删除</button>
+						</tr>
+						</tr>
+						</tbody>
+					</table>
 				</div>
 				<!-- /.box-content -->
 			</div>
 			<!-- /.col-xs-12 -->
-
-			<div class="col-lg-4 col-xs-12">
-				<div class="box-content">
-					<h4 class="box-title text-info">Total Visitors</h4>
-					<!-- /.box-title -->
-					<div class="dropdown js__drop_down">
-						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
-						<ul class="sub-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else there</a></li>
-							<li class="split"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul>
-						<!-- /.sub-menu -->
-					</div>
-					<!-- /.dropdown js__dropdown -->
-					<div class="content widget-stat">
-						<div id="traffic-sparkline-chart-1" class="left-content margin-top-15"></div>
-						<!-- /#traffic-sparkline-chart-1 -->
-						<div class="right-content">
-							<h2 class="counter text-info">278</h2>
-							<!-- /.counter -->
-							<p class="text text-info">Some text here</p>
-							<!-- /.text -->
-						</div>
-						<!-- .right-content -->
-					</div>
-					<!-- /.content widget-stat -->
-				</div>
-				<!-- /.box-content -->
-			</div>
-			<!-- /.col-lg-4 col-xs-12 -->
-
-			<div class="col-lg-4 col-xs-12">
-				<div class="box-content">
-					<h4 class="box-title text-success">Projects Done</h4>
-					<!-- /.box-title -->
-					<div class="dropdown js__drop_down">
-						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
-						<ul class="sub-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else there</a></li>
-							<li class="split"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul>
-						<!-- /.sub-menu -->
-					</div>
-					<!-- /.dropdown js__dropdown -->
-					<div class="content widget-stat">
-						<div id="traffic-sparkline-chart-2" class="left-content margin-top-10"></div>
-						<!-- /#traffic-sparkline-chart-2 -->
-						<div class="right-content">
-							<h2 class="counter text-success">36%</h2>
-							<!-- /.counter -->
-							<p class="text text-success">Some text here</p>
-							<!-- /.text -->
-						</div>
-						<!-- .right-content -->
-					</div>
-					<!-- /.content widget-stat -->
-				</div>
-				<!-- /.box-content -->
-			</div>
-			<!-- /.col-lg-4 col-xs-12 -->
-
-			<div class="col-lg-4 col-xs-12">
-				<div class="box-content">
-					<h4 class="box-title text-success">Salary Traffic</h4>
-					<!-- /.box-title -->
-					<div class="dropdown js__drop_down">
-						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
-						<ul class="sub-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else there</a></li>
-							<li class="split"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul>
-						<!-- /.sub-menu -->
-					</div>
-					<!-- /.dropdown js__dropdown -->
-					<div class="content widget-stat">
-						<div id="traffic-sparkline-chart-3" class="left-content"></div>
-						<!-- /#traffic-sparkline-chart-3 -->
-						<div class="right-content">
-							<h2 class="counter text-danger">849 <i class="fa fa-angle-double-up"></i></h2>
-							<!-- /.counter -->
-							<p class="text text-danger">Some text here</p>
-							<!-- /.text -->
-						</div>
-						<!-- .right-content -->
-					</div>
-					<!-- /.content widget-stat -->
-				</div>
-				<!-- /.box-content -->
-			</div>
-			<!-- /.col-lg-4 col-xs-12 -->
-
-			<div class="col-lg-6 col-xs-12">
-				<div class="box-content">
-					<h4 class="box-title">Visitor Analytics</h4>
-					<!-- /.box-title -->
-					<div class="dropdown js__drop_down">
-						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
-						<ul class="sub-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else there</a></li>
-							<li class="split"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul>
-						<!-- /.sub-menu -->
-					</div>
-					<!-- /.dropdown js__dropdown -->
-					<div id="bar-morris-chart" class="morris-chart" style="height: 240px"></div>
-					<div class="text-center">
-						<ul class="list-inline morris-chart-detail-list">
-							<li><i class="fa fa-circle"></i>Series A</li>
-							<li><i class="fa fa-circle"></i>Series B</li>
-							<li><i class="fa fa-circle"></i>Series C</li>
-						</ul>
-					</div>
-					<!-- /#bar-morris-chart.morris-chart -->
-				</div>
-				<!-- /.box-content -->
-			</div>
-			<!-- /.col-lg-6 col-xs-12 -->
-
-			<div class="col-lg-6 col-xs-12">
-				<div class="box-content">
-					<h4 class="box-title">Memory usage</h4>
-					<!-- /.box-title -->
-					<div class="dropdown js__drop_down">
-						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
-						<ul class="sub-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else there</a></li>
-							<li class="split"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul>
-						<!-- /.sub-menu -->
-					</div>
-					<!-- /.dropdown js__dropdown -->
-					<div id="donut-morris-chart" class="morris-chart" style="height: 240px"></div>
-					<div class="text-center">
-						<ul class="list-inline morris-chart-detail-list">
-							<li><i class="fa fa-circle"></i>Series A</li>
-							<li><i class="fa fa-circle"></i>Series B</li>
-							<li><i class="fa fa-circle"></i>Series C</li>
-						</ul>
-					</div>
-					<!-- /#donut-morris-chart.morris-chart -->
-				</div>
-				<!-- /.box-content -->
-			</div>
-			<!-- /.col-lg-6 col-xs-12 -->
 		</div>
-		<!-- /.row -->
-
-		<div class="row small-spacing">
-			<div class="col-lg-3 col-md-6 col-xs-12">
-				<div class="box-content bg-success text-white">
-					<div class="statistics-box with-icon">
-						<i class="ico small fa fa-diamond"></i>
-						<p class="text text-white">SUCCESS</p>
-						<h2 class="counter">72943</h2>
-					</div>
-				</div>
-				<!-- /.box-content -->
-			</div>
-			<!-- /.col-lg-3 col-md-6 col-xs-12 -->
-			<div class="col-lg-3 col-md-6 col-xs-12">
-				<div class="box-content bg-info text-white">
-					<div class="statistics-box with-icon">
-						<i class="ico small fa fa-download"></i>
-						<p class="text text-white">DOWNLOAD</p>
-						<h2 class="counter">6382</h2>
-					</div>
-				</div>
-				<!-- /.box-content -->
-			</div>
-			<!-- /.col-lg-3 col-md-6 col-xs-12 -->
-			<div class="col-lg-3 col-md-6 col-xs-12">
-				<div class="box-content bg-danger text-white">
-					<div class="statistics-box with-icon">
-						<i class="ico small fa fa-bug"></i>
-						<p class="text text-white">FIXED BUG</p>
-						<h2 class="counter">12564</h2>
-					</div>
-				</div>
-				<!-- /.box-content -->
-			</div>
-			<!-- /.col-lg-3 col-md-6 col-xs-12 -->
-			<div class="col-lg-3 col-md-6 col-xs-12">
-				<div class="box-content bg-warning text-white">
-					<div class="statistics-box with-icon">
-						<i class="ico small fa fa-usd"></i>
-						<p class="text text-white">SALES</p>
-						<h2 class="counter">2,637</h2>
-					</div>
-				</div>
-				<!-- /.box-content -->
-			</div>
-			<!-- /.col-lg-3 col-md-6 col-xs-12 -->
-		</div>
-		<!-- .row -->
-
-		<div class="row small-spacing">
-			<div class="col-lg-6 col-xs-12">
-				<div class="box-content">
-					<div id="calendar-widget"></div>
-				</div>
-				<!-- /.box-content -->
-			</div>
-			<!-- /.col-lg-6 col-xs-12 -->
-			<div class="col-lg-6 col-xs-12">
-				<div class="box-content">
-					<h4 class="box-title">Purchases</h4>
-					<!-- /.box-title -->
-					<div class="dropdown js__drop_down">
-						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
-						<ul class="sub-menu">
-							<li><a href="#">Product</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else there</a></li>
-							<li class="split"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul>
-						<!-- /.sub-menu -->
-					</div>
-					<!-- /.dropdown js__dropdown -->
-					<div class="table-responsive table-purchases">
-						<table class="table table-striped margin-bottom-10">
-							<thead>
-								<tr>
-									<th style="width:40%;">Product</th>
-									<th>Price</th>
-									<th>Date</th>
-									<th>State</th>
-									<th style="width:5%;"></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Amaza Themes</td>
-									<td>$71</td>
-									<td>Nov 12,2016</td>
-									<td class="text-success">Completed</td>
-									<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
-								</tr>
-								<tr>
-									<td>Macbook</td>
-									<td>$142</td>
-									<td>Nov 10,2016</td>
-									<td class="text-danger">Cancelled</td>
-									<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
-								</tr>
-								<tr>
-									<td>Samsung TV</td>
-									<td>$200</td>
-									<td>Nov 01,2016</td>
-									<td class="text-warning">Pending</td>
-									<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
-								</tr>
-								<tr>
-									<td>Ninja Admin</td>
-									<td>$200</td>
-									<td>Oct 28,2016</td>
-									<td class="text-warning">Pending</td>
-									<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
-								</tr>
-								<tr>
-									<td>Galaxy Note 5</td>
-									<td>$200</td>
-									<td>Oct 28,2016</td>
-									<td class="text-success">Completed</td>
-									<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
-								</tr>
-								<tr>
-									<td>CleanUp Themes</td>
-									<td>$71</td>
-									<td>Oct 22,2016</td>
-									<td class="text-success">Completed</td>
-									<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
-								</tr>
-								<tr>
-									<td>Facebook WP Plugin</td>
-									<td>$10</td>
-									<td>Oct 15,2016</td>
-									<td class="text-success">Completed</td>
-									<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
-								</tr>
-								<tr>
-									<td>Iphone 7</td>
-									<td>$100</td>
-									<td>Oct 12,2016</td>
-									<td class="text-warning">Pending</td>
-									<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
-								</tr>
-								<tr>
-									<td>Nova House</td>
-									<td>$100</td>
-									<td>Oct 12,2016</td>
-									<td class="text-warning">Pending</td>
-									<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
-								</tr>
-								<tr>
-									<td>Repair Cars</td>
-									<td>$35</td>
-									<td>Oct 12,2016</td>
-									<td class="text-warning">Pending</td>
-									<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
-								</tr>
-							</tbody>
-						</table>
-						<!-- /.table -->
-					</div>
-					<!-- /.table-responsive -->
-				</div>
-				<!-- /.box-content -->
-			</div>
-			<!-- /.col-lg-6 col-xs-12 -->
-		</div>
-		<!-- /.row -->		
+		<!-- /.row small-spacing -->		
 		<footer class="footer">
 			<ul class="list-inline">
 				<li>2016 © NinjaAdmin.</li>
@@ -747,43 +435,26 @@
 </div><!--/#wrapper -->
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
-		<script th:src="@{/assets/script/html5shiv.min.js}"></script>
-		<script th:src="@{/assets/script/respond.min.js}"></script>
+		<script src="assets/script/html5shiv.min.js"></script>
+		<script src="assets/script/respond.min.js"></script>
 	<![endif]-->
 	<!-- 
 	================================================== -->
-
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script th:src="@{/assets/scripts/jquery.min.js}"></script>
-	<script th:src="@{/assets/scripts/modernizr.min.js}"></script>
-	<script th:src="@{/assets/plugin/bootstrap/js/bootstrap.min.js}"></script>
-	<script th:src="@{/assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
-	<script th:src="@{/assets/plugin/nprogress/nprogress.js}"></script>
-	<script th:src="@{/assets/plugin/sweet-alert/sweetalert.min.js}"></script>
-	<script th:src="@{/assets/plugin/waves/waves.min.js}"></script>
+	<script src="assets/scripts/jquery.min.js"></script>
+	<script src="assets/scripts/modernizr.min.js"></script>
+	<script src="assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="assets/plugin/nprogress/nprogress.js"></script>
+	<script src="assets/plugin/sweet-alert/sweetalert.min.js"></script>
+	<script src="assets/plugin/waves/waves.min.js"></script>
 
-	<!-- Morris Chart -->
-	<script th:src="@{/assets/plugin/chart/morris/morris.min.js}"></script>
-	<script th:src="@{/assets/plugin/chart/morris/raphael-min.js}"></script>
-	<script th:src="@{/assets/scripts/chart.morris.init.min.js}"></script>
+	<!-- Data Tables -->
+	<script src="assets/plugin/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="assets/plugin/datatables/media/js/dataTables.bootstrap.min.js"></script>
+	<script src="assets/plugin/editable-table/mindmup-editabletable.js"></script>
+	<script src="assets/scripts/datatables.demo.min.js"></script>
 
-	<!-- Flot Chart -->
-	<script th:src="@{/assets/plugin/chart/plot/jquery.flot.min.js}"></script>
-	<script th:src="@{/assets/plugin/chart/plot/jquery.flot.tooltip.min.js}"></script>
-	<script th:src="@{/assets/plugin/chart/plot/jquery.flot.categories.min.js}"></script>
-	<script th:src="@{/assets/plugin/chart/plot/jquery.flot.pie.min.js}"></script>
-	<script th:src="@{/assets/plugin/chart/plot/jquery.flot.stack.min.js}"></script>
-	<script th:src="@{/assets/scripts/chart.flot.init.min.js}"></script>
-
-	<!-- Sparkline Chart -->
-	<script th:src="@{/assets/plugin/chart/sparkline/jquery.sparkline.min.js}"></script>
-	<script th:src="@{/assets/scripts/chart.sparkline.init.min.js}"></script>
-
-	<!-- FullCalendar -->
-	<script th:src="@{/assets/plugin/moment/moment.js}"></script>
-	<script th:src="@{/assets/plugin/fullcalendar/fullcalendar.min.js}"></script>
-	<script th:src="@{/assets/scripts/fullcalendar.init.js}"></script>
-
-	<script th:src="@{/assets/scripts/main.min.js}"></script>
+	<script src="assets/scripts/main.min.js"></script>
 </body>
 </html>

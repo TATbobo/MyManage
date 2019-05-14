@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
@@ -26,12 +28,12 @@ public class MyAuthenticationFailHandler extends SimpleUrlAuthenticationFailureH
     @Autowired
     private SecurityProperties securityProperties;
 
+    private RedirectStrategy redirectStrategy=new DefaultRedirectStrategy();
+
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
 
         logger.info("登录失败");
-
-
-
+        redirectStrategy.sendRedirect(request, response, "/login");
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -72,12 +73,13 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         validateCodeFilter.afterPropertiesSet();
 
 
-        http.formLogin().usernameParameter("Username").passwordParameter("Password").loginPage("/login")
+            http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
+                .formLogin().usernameParameter("Username").passwordParameter("Password").loginPage("/login")
                 .successHandler(mySuccessHandler)
                 .failureHandler(myFailHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login","/assets/**","/register","/login/error").permitAll()
+                .antMatchers("/login","emp/**","/assets/**","/register","/login/error","/code/image").permitAll()
                 .anyRequest()
                 .authenticated();
 

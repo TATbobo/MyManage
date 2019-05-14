@@ -3,6 +3,7 @@ package com.tucker.manage.controller;
 
 import com.tucker.manage.bean.User;
 import com.tucker.manage.mapper.UserMapper;
+import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ public class LoginController {
 	public String index() {
 		return "index";
 	}
+
     /*登陆页*/
 	@GetMapping("/login")
 	public String loginPage() {

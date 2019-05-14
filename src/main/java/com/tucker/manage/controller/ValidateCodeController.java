@@ -36,6 +36,7 @@ public class ValidateCodeController {
         ImageCode imageCode = imageCodeGenerator.generate(new ServletWebRequest(request));
         // 第二步：将图形验证码对象存到session中,第一个参数可以从传入的请求中获取session
         sessionStrategy.setAttribute(new ServletRequestAttributes(request), SESSION_KEY, imageCode);
+
         // 第三步：将生成的图片写到接口的响应中
         ImageIO.write(imageCode.getImage(), FORMAT_NAME, response.getOutputStream());
     }
