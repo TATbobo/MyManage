@@ -31,17 +31,22 @@ public class EmpController {
         return "/tables-datatable";
     }
 
-    @GetMapping("/emp/editable")
+    @GetMapping("/edit")
     public String toEditPage(Model model){
         Collection<Employee> employees = empService.getAll();
         model.addAttribute("emps",employees);
         return "/tables-editable";
     }
 
+    @GetMapping("/insert")
+    public String toInsertPage(){
+        return "tables-inserttable";
+    }
+
     @PostMapping("/emp")
     public String insertEmp(Employee employee){
         empService.insertEmp(employee);
-        return "redirect:/tables-datatable";
+        return "redirect:/emps";
     }
 
     @DeleteMapping("/emp/{id}")

@@ -18,9 +18,9 @@ public interface EmployeeMapper {
     public int deleteEmpById(Integer id);
 
     @Options(useGeneratedKeys = true,keyProperty = "id")
-    @Insert("insert into Employee(lastName,email,gender,birth) values(#{lastName},#{gender},#{email},#{birth})")
+    @Insert("insert into employee(lastName,position,office,age,start_date,salary) values(#{lastName},#{position},#{office},#{age},#{start_date},#{salary})")
     public int insertEmp(Employee employee);
 
-    @Update("update employee set departmentName=#{departmentName} where id=#{id}")
+    @Update("update employee set lastName=#{lastName},email=#{email},gender=#{gender},d_id=#{d_id} where id=#{id}")
     public int upDateEmp(Employee employee);
 }

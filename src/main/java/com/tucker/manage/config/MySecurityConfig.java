@@ -81,7 +81,9 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login","emp/**","/assets/**","/register","/login/error","/code/image").permitAll()
                 .anyRequest()
-                .authenticated();
+                .authenticated()
+                .and()
+                .csrf().disable();
 
         http.logout().logoutSuccessUrl("/");
         http.rememberMe().rememberMeParameter("remember-me");
