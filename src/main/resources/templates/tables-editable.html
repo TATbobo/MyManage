@@ -11,7 +11,7 @@
 
 	<!-- Main Styles -->
 	<link rel="stylesheet" href="assets/styles/style.min.css">
-	
+
 	<!-- Material Design Icon -->
 	<link rel="stylesheet" href="assets/fonts/material-design/css/materialdesignicons.css">
 
@@ -23,7 +23,7 @@
 
 	<!-- Sweet Alert -->
 	<link rel="stylesheet" href="assets/plugin/sweet-alert/sweetalert.css">
-	
+
 	<!-- Data Tables -->
 	<link rel="stylesheet" href="assets/plugin/datatables/media/css/jquery.dataTables.min.css">
 
@@ -156,8 +156,8 @@
 						<li><a href="page-recoverpw.html">Recover Password</a></li>
 						<li><a href="page-lock-screen.html">Lock Screen</a></li>
 						<li><a href="page-confirm-mail.html">Confirm Mail</a></li>
-						<li><a href="error/page-404.html">Error 404</a></li>
-						<li><a href="error/page-500.html">Error 500</a></li>
+						<li><a href="page-404.html">Error 404</a></li>
+						<li><a href="page-500.html">Error 500</a></li>
 					</ul>
 					<!-- /.sub-menu js__content -->
 				</li>
@@ -385,34 +385,33 @@
 				<div class="box-content">
 					<table id="example-edit" class="display" style="width: 100%">
 						<thead>
-						<thead>
 						<tr>
-							<th>姓名</th>
-							<th>性别</th>
-							<th>邮箱</th>
-							<th>部门</th>
+							<th>Name</th>
+							<th>Position</th>
+							<th>Office</th>
+							<th>Age</th>
+							<th>Start date</th>
+							<th>Salary</th>
 						</tr>
 						</thead>
 						<tfoot>
 						<tr>
-							<th>姓名</th>
-							<th>性别</th>
-							<th>邮箱</th>
-							<th>部门</th>
+							<th>Name</th>
+							<th>Position</th>
+							<th>Office</th>
+							<th>Age</th>
+							<th>Start date</th>
+							<th>Salary</th>
 						</tr>
 						</tfoot>
 						<tbody>
-						<tr>
 						<tr th:each="emp:${emps}">
-							<td th:text="${emp.id}"></td>
-							<td>[[${emp.lastName}]]</td>
-							<td th:text="${emp.email}"></td>
-							<td th:text="${emp.gender}==0?'女':'男'"></td>
-							<td th:text="${#dates.format(emp.birth, 'yyyy-MM-dd HH:mm')}"></td>
-							<td>
-								<a class="btn btn-sm btn-primary" th:href="@{/emp/}+${emp.id}">编辑</a>
-								<button th:attr="del_uri=@{/emp/}+${emp.id}" class="btn btn-sm btn-danger deleteBtn">删除</button>
-						</tr>
+							<td  th:id="${emp.id}+${emp.lastName}" th:text="${emp.lastName}"></td>
+							<td th:text="${emp.position}"></td>
+							<td th:text="${emp.office}"></td>
+							<td th:text="${emp.age}"></td>
+							<td th:text="${emp.start_date}"></td>
+							<td th:text="${emp.salary}"></td>
 						</tr>
 						</tbody>
 					</table>
@@ -421,7 +420,7 @@
 			</div>
 			<!-- /.col-xs-12 -->
 		</div>
-		<!-- /.row small-spacing -->		
+		<!-- /.row small-spacing -->
 		<footer class="footer">
 			<ul class="list-inline">
 				<li>2016 © NinjaAdmin.</li>
@@ -433,28 +432,28 @@
 	</div>
 	<!-- /.main-content -->
 </div><!--/#wrapper -->
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-		<script src="assets/script/html5shiv.min.js"></script>
-		<script src="assets/script/respond.min.js"></script>
-	<![endif]-->
-	<!-- 
-	================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="assets/scripts/jquery.min.js"></script>
-	<script src="assets/scripts/modernizr.min.js"></script>
-	<script src="assets/plugin/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script src="assets/plugin/nprogress/nprogress.js"></script>
-	<script src="assets/plugin/sweet-alert/sweetalert.min.js"></script>
-	<script src="assets/plugin/waves/waves.min.js"></script>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script th:src="@{assets/script/html5shiv.min.js}"></script>
+<script th:src="@{assets/script/respond.min.js}"></script>
+<![endif]-->
+<!--
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{assets/scripts/jquery.min.js}"></script>
+<script th:src="@{assets/scripts/modernizr.min.js}"></script>
+<script th:src="@{assets/plugin/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+<script th:src="@{assets/plugin/nprogress/nprogress.js}"></script>
+<script th:src="@{assets/plugin/sweet-alert/sweetalert.min.js}"></script>
+<script th:src="@{assets/plugin/waves/waves.min.js}"></script>
 
-	<!-- Data Tables -->
-	<script src="assets/plugin/datatables/media/js/jquery.dataTables.min.js"></script>
-	<script src="assets/plugin/datatables/media/js/dataTables.bootstrap.min.js"></script>
-	<script src="assets/plugin/editable-table/mindmup-editabletable.js"></script>
-	<script src="assets/scripts/datatables.demo.min.js"></script>
+<!-- Data Tables -->
+<script th:src="@{assets/plugin/datatables/media/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{assets/plugin/datatables/media/js/dataTables.bootstrap.min.js}"></script>
+<script th:src="@{assets/plugin/editable-table/mindmup-editabletable.js}"></script>
+<script th:src="@{assets/scripts/datatables.demo.min.js}"></script>
 
-	<script src="assets/scripts/main.min.js"></script>
+<script th:src="@{assets/scripts/main.min.js}"></script>
 </body>
 </html>

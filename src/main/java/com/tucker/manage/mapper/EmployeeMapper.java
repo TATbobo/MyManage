@@ -21,6 +21,6 @@ public interface EmployeeMapper {
     @Insert("insert into employee(lastName,position,office,age,start_date,salary) values(#{lastName},#{position},#{office},#{age},#{start_date},#{salary})")
     public int insertEmp(Employee employee);
 
-    @Update("update employee set lastName=#{lastName},email=#{email},gender=#{gender},d_id=#{d_id} where id=#{id}")
+    @Update("update employee set lastName=#{lastName},position=#{position},office=#{office},age=#{age},start_date=#{start_date},salary=#{salary} where id=#{id}")
     public int upDateEmp(Employee employee);
 }

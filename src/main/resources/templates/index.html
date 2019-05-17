@@ -37,11 +37,11 @@
 <body>
 <div class="main-menu">
 	<header class="header">
-		<a href="index.html" class="logo"><i class="ico mdi mdi-cube-outline"></i>MyAdmin</a>
+		<a th:href="@{/}" class="logo"><i class="ico mdi mdi-cube-outline"></i>MyAdmin</a>
 		<button type="button" class="button-close fa fa-times js__menu_close"></button>
 		<div class="user">
 			<a href="" class="avatar"><img src="assets/images/avatar-sm-5.jpg" alt=""><span class="status online"></span></a>
-			<h5 class="name"><a href="profile.html">Denise Emily</a></h5>
+			<h5 class="name"><a href="profile.html">Tucker</a></h5>
 			<h5 class="position">Administrator</h5>
 			<!-- /.name -->
 			<div class="control-wrap js__drop_down">
@@ -145,10 +145,8 @@
 				<li>
 					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-table"></i><span>Tables</span><span class="menu-arrow fa fa-angle-down"></span></a>
 					<ul class="sub-menu js__content">
-						<li><a href="tables-basic.html">Basic Tables</a></li>
 						<li><a th:href="@{/emps}">员工列表</a></li>
-						<li><a href="tables-responsive.html">Responsive Tables</a></li>
-						<li><a href="tables-editable.html">Editable Tables</a></li>
+						<li><a th:href="@{/edits}">批量修改员工</a></li>
 					</ul>
 					<!-- /.sub-menu js__content -->
 				</li>

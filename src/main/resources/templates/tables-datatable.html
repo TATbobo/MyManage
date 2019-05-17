@@ -10,23 +10,23 @@
 	<title>Datatables - My Admin Template</title>
 
 	<!-- Main Styles -->
-	<link rel="stylesheet" href="assets/styles/style.min.css">
-	
+	<link rel="stylesheet" th:href="@{assets/styles/style.min.css}">
+
 	<!-- Material Design Icon -->
-	<link rel="stylesheet" href="assets/fonts/material-design/css/materialdesignicons.css">
+	<link rel="stylesheet" th:href="@{assets/fonts/material-design/css/materialdesignicons.css}">
 
 	<!-- mCustomScrollbar -->
-	<link rel="stylesheet" href="assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" th:href="@{assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css}">
 
 	<!-- Waves Effect -->
-	<link rel="stylesheet" href="assets/plugin/waves/waves.min.css">
+	<link rel="stylesheet" th:href="@{assets/plugin/waves/waves.min.css}">
 
 	<!-- Sweet Alert -->
-	<link rel="stylesheet" href="assets/plugin/sweet-alert/sweetalert.css">
-	
+	<link rel="stylesheet" th:href="@{assets/plugin/sweet-alert/sweetalert.css}">
+
 	<!-- Data Tables -->
-	<link rel="stylesheet" href="assets/plugin/datatables/media/css/dataTables.bootstrap.min.css">
-	<link rel="stylesheet" href="assets/plugin/datatables/extensions/Responsive/css/responsive.bootstrap.min.css">
+	<link rel="stylesheet" th:href="@{assets/plugin/datatables/media/css/dataTables.bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{assets/plugin/datatables/extensions/Responsive/css/responsive.bootstrap.min.css}">
 
 </head>
 
@@ -402,36 +402,45 @@
 						<thead>
 							<tr>
 								<th>姓名</th>
-								<th>性别</th>
-								<th>邮箱</th>
-								<th>部门</th>
+								<th>职位</th>
+								<th>办公室</th>
+								<th>年龄</th>
+								<th>工作开始日期</th>
+								<th>薪水</th>
+								<th>选项</th>
 							</tr>
 						</thead>
 						<tfoot>
 							<tr>
 								<th>姓名</th>
-								<th>性别</th>
-								<th>邮箱</th>
-								<th>部门</th>
+								<th>职位</th>
+								<th>办公室</th>
+								<th>年龄</th>
+								<th>工作开始日期</th>
+								<th>薪水</th>
+								<th>选项</th>
 							</tr>
 						</tfoot>
 						<tbody>
 						<tr>
 							<tr th:each="emp:${emps}">
-							<th th:text="${emp.id}"></th>
-							<th>[[${emp.lastName}]]</th>
-							<th th:text="${emp.email}"></th>
-							<th th:text="${emp.gender}==0?'女':'男'"></th>
-							<th th:text="${#dates.format(emp.birth, 'yyyy-MM-dd HH:mm')}"></th>
-							<td>
-								<a class="btn btn-sm btn-primary" th:href="@{/emp/}+${emp.id}"th:attr="del_uri=@{/emp/}+${emp.id}">编辑</a>
-								<button id="sal-warnin" type="button"  class="btn btn-sm btn-danger deleteBtn">删除</button>
-						</tr><button id="sal-warning" class="btn btn-primary waves-effect waves-light" type="button">Try me!</button>
-							</td>
+								<th th:text="${emp.lastName}"></th>
+								<th th:text="${emp.position}"></th>
+								<th th:text="${emp.office}"></th>
+								<th th:text="${emp.age}"></th>
+								<th th:text="${emp.start_date}"></th>
+								<th th:text="${emp.salary}"></th>
+								<th><a class="btn btn-sm btn-primary" th:href="@{/edit/}+${emp.id}">编辑</a>
+								<button type="submit" th:id="del" th:attr="del_uri=@{/emp/}+${emp.id}" class="btn btn-danger js__delete">删除</button></th>
+							</tr>
+							<a class="btn btn-sm btn-success" th:href="@{/insert}">添加</a>
 						</tr>
 						</tbody>
 					</table>
 				</div>
+				<form id="deleteEmpForm" method="post">
+					<input type="hidden" name="_method" value="delete">
+				</form>
 				<!-- /.box-content -->
 			</div>
 			<!-- /.col-xs-12 -->
@@ -1437,7 +1446,7 @@
 			</div>
 			<!-- /.col-xs-12 -->
 		</div>
-		<!-- /.row small-spacing -->		
+		<!-- /.row small-spacing -->
 		<footer class="footer">
 			<ul class="list-inline">
 				<li>2016 © NinjaAdmin.</li>
@@ -1446,42 +1455,39 @@
 				<li><a href="#">Help</a></li>
 			</ul>
 		</footer>
-		<form id="deleteEmpForm"  method="post">
-			<input type="hidden" name="_method" value="delete"/>
-		</form>
 	</div>
 	<!-- /.main-content -->
 </div><!--/#wrapper -->
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
-		<script src="assets/script/html5shiv.min.js"></script>
-		<script src="assets/script/respond.min.js"></script>
+		<script th:src="@{assets/script/html5shiv.min.js}"></script>
+		<script th:src="@{assets/script/respond.min.js}"></script>
 	<![endif]-->
-	<!-- 
+	<!--
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="assets/scripts/jquery.min.js"></script>
-	<script src="assets/scripts/modernizr.min.js"></script>
-	<script src="assets/plugin/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script src="assets/plugin/nprogress/nprogress.js"></script>
-	<script src="assets/plugin/sweet-alert/sweetalert.min.js"></script>
-	<script src="assets/plugin/waves/waves.min.js"></script>
+	<script th:src="@{assets/scripts/jquery.min.js}"></script>
+	<script th:src="@{assets/scripts/modernizr.min.js}"></script>
+	<script th:src="@{assets/plugin/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+	<script th:src="@{assets/plugin/nprogress/nprogress.js}"></script>
+	<script th:src="@{assets/plugin/sweet-alert/sweetalert.min.js}"></script>
+	<script th:src="@{assets/plugin/waves/waves.min.js}"></script>
 
 	<!-- Data Tables -->
-	<script src="assets/plugin/datatables/media/js/jquery.dataTables.min.js"></script>
-	<script src="assets/plugin/datatables/media/js/dataTables.bootstrap.min.js"></script>
-	<script src="assets/plugin/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
-	<script src="assets/plugin/datatables/extensions/Responsive/js/responsive.bootstrap.min.js"></script>
-	<script src="assets/scripts/datatables.demo.min.js"></script>
+	<script th:src="@{assets/plugin/datatables/media/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{assets/plugin/datatables/media/js/dataTables.bootstrap.min.js}"></script>
+	<script th:src="@{assets/plugin/datatables/extensions/Responsive/js/dataTables.responsive.min.js}"></script>
+	<script th:src="@{assets/plugin/datatables/extensions/Responsive/js/responsive.bootstrap.min.js}"></script>
+	<script th:src="@{assets/scripts/datatables.demo.min.js}"></script>
 
-	<script src="assets/scripts/main.min.js"></script>
-<!--<script>
+	<script th:src="@{assets/scripts/main.min.js}"></script>
+<script>
 	$(".deleteBtn").click(function(){
 		//删除当前员工的
 		$("#deleteEmpForm").attr("action",$(this).attr("del_uri")).submit();
 		return false;
 	});
-</script>-->
+</script>
 </body>
 </html>

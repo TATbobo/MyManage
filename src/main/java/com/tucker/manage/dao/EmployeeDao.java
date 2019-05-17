@@ -1,13 +1,12 @@
 package com.tucker.manage.dao;
 
 import com.tucker.manage.bean.Employee;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.List;
 
+@Component
 public interface EmployeeDao {
-    public Collection<Employee>  getAll();
-    public Employee getEmpById(Integer id);
-    public void insertEmp(Employee employee);
-    public void deleteEmp(Integer id);
-    public void upDateEmp(Employee employee);
+    public int updateEmps(List<Employee> empList);
 }

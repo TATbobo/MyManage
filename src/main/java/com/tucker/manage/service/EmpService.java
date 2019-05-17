@@ -9,34 +9,34 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 
 @Service
-public class EmpService implements EmployeeDao {
+public class EmpService {
 
     @Autowired
     EmployeeMapper employeeMappee;
 
-    @Override
+
     public Collection<Employee> getAll() {
         Collection<Employee> emps = employeeMappee.getAllEmp();
         return emps;
     }
 
-    @Override
+
     public Employee getEmpById(Integer id) {
         Employee emp=employeeMappee.getDEmpById(id);
         return emp;
     }
 
-    @Override
+
     public void insertEmp(Employee employee) {
         employeeMappee.insertEmp(employee);
     }
 
-    @Override
+
     public void deleteEmp(Integer id) {
         employeeMappee.deleteEmpById(id);
     }
 
-    @Override
+
     public void upDateEmp(Employee employee) {
         employeeMappee.upDateEmp(employee);
     }

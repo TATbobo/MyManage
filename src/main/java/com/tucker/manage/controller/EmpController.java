@@ -21,26 +21,32 @@ public class EmpController {
         Collection<Employee> employees = empService.getAll();
         //放在请求域中
         model.addAttribute("emps",employees);
-        return "/tables-datatable";
+        return "tables-datatable";
     }
 
-    @GetMapping("/emp/{id}")
+   /* @GetMapping("/emp/{id}")
     public String getEmpById(@PathVariable("id") Integer id,Model model){
         Employee employee = empService.getEmpById(id);
         model.addAttribute("emp",employee);
         return "/tables-datatable";
-    }
+    }*/
 
-    @GetMapping("/edit")
-    public String toEditPage(Model model){
+    @GetMapping("/edit/{id}")
+    public String toEditPage(@PathVariable("id") Integer id,Model model){
+        Employee employee = empService.getEmpById(id);
+        model.addAttribute("emp",employee);
+        return "tables-inserttable";
+    }
+    @GetMapping("/edits")
+    public String toEditsPage(Model model){
         Collection<Employee> employees = empService.getAll();
         model.addAttribute("emps",employees);
-        return "/tables-editable";
+        return "tables-editable";
     }
 
     @GetMapping("/insert")
     public String toInsertPage(){
-        return "tables-inserttable";
+        return "/tables-inserttable";
     }
 
     @PostMapping("/emp")
@@ -58,7 +64,7 @@ public class EmpController {
     @PutMapping("/emp")
     public String updateEmp(Employee employee){
         empService.upDateEmp(employee);
-        return "/tables-datatable";
+        return "redirect:/emps";
     }
 
 }
