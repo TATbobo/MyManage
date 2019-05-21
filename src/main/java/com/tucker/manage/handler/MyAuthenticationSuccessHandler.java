@@ -49,6 +49,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         logger.info("账号密码正确");
+
         sessionStrategy.setAttribute(new ServletRequestAttributes(request), code, request.getParameter("code"));
         super.onAuthenticationSuccess(request,response,authentication);
         /*this.handle(request,response,authentication);*/

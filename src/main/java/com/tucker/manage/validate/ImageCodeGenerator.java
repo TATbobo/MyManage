@@ -4,6 +4,7 @@ import com.tucker.manage.image.ImageCode;
 import com.tucker.manage.properties.SecurityProperties;
 import com.tucker.manage.properties.ValidateCodeProperties;
 import lombok.Data;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 
@@ -12,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 @Data
+@EnableConfigurationProperties(SecurityProperties.class)
 public class ImageCodeGenerator implements ValidateCodeGenerator {
 
     private static final String IMAGE_WIDTH_NAME = "width";

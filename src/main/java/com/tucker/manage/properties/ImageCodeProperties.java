@@ -16,7 +16,7 @@ public class ImageCodeProperties {
     /**
      * 验证码长度
      */
-    private int length = 5;
+    private int length ;
     /**
      * 验证码过期时间
      */
@@ -25,6 +25,6 @@ public class ImageCodeProperties {
     /**
      * 需要验证码的url字符串，用英文逗号隔开
      */
-    private String url="/";
+    private String url="";
 
 }

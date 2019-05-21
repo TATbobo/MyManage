@@ -79,7 +79,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(myFailHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login","/assets/**","/register","/login/error","/code/image").permitAll()
+                .antMatchers("/login","/page-login.html","/assets/**","/register","/login/error","/code/image").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

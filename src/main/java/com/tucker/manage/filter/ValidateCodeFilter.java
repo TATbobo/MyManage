@@ -15,6 +15,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
@@ -52,7 +53,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
 
     private final AntPathMatcher antPathMatcher = new AntPathMatcher();
 
-
+    private SessionAuthenticationStrategy sessionAuthenticationStrategy;
 
     @Override
     public void afterPropertiesSet() throws ServletException {
@@ -90,6 +91,8 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
      * @throws ServletRequestBindingException 请求异常
      */
     private void validate(ServletWebRequest request) throws ServletRequestBindingException {
+        logger.info(request.getParameter("Username"));
+        logger.info(request.getParameter("Password"));
         // 从session中获取图片验证码
         ImageCode imageCodeInSession = (ImageCode) sessionStrategy.getAttribute(request, ValidateCodeController.SESSION_KEY);
         // 从请求中获取用户填写的验证码
@@ -112,6 +115,8 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
             throw new ValidateCodeException("验证码不匹配");
         }
         // 验证成功，删除session中的验证码
+        logger.info("验证码成功");
+        logger.info("登陆成功");
         sessionStrategy.removeAttribute(request, ValidateCodeController.SESSION_KEY);
         sessionStrategy.removeAttribute(request, MyAuthenticationSuccessHandler.code);
     }
